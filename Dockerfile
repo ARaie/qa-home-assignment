@@ -1,15 +1,28 @@
+# Kasutame SDK pilti, et ehitada ja testida rakendust
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /app
 
+# Kopeerige kogu projekt konteinerisse
 COPY . .
 
+# Taastame sõltuvused
 RUN dotnet restore
 
-RUN dotnet build
+# Ehita rakendus
+RUN dotnet build --configuration Release
 
-# RUN dotnet test CardValidation.Tests/ --logger "trx;LogFileName=test-results.trx"
+# Testige rakendust
+RUN dotnet test /app/CardValidation.Tests/ --logger "trx;LogFileName=test-results.trx"
 
-EXPOSE 80
+# Kasutame ainult runtime pilti, et käivitada rakendus
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
-CMD ["dotnet", "run", "--project", "/app/CardValidation.Web/CardValidation.Web.csproj"]
+WORKDIR /app
+
+# Kopeerige ehitusest failid
+COPY --from=build /app /app
+
+EXPOSE 5000
+
+ENTRYPOINT ["dotnet", "CardValidation.Web.dll"]

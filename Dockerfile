@@ -13,7 +13,7 @@ RUN dotnet restore
 RUN dotnet build --configuration Release
 
 # Run unit tests
-RUN dotnet test CardValidation.Tests/ --logger:"xunit;LogFilePath=test-results.xml"
+RUN dotnet test CardValidation.Tests/ --logger:"trx;LogFileName=test-results.trx"
 
 # Publish the application
 RUN dotnet publish --configuration Release --output /app

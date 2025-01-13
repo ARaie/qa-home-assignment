@@ -6,16 +6,10 @@ COPY . .
 
 RUN dotnet restore
 
-RUN dotnet build --configuration Release
+RUN dotnet build
 
 RUN dotnet test /app/CardValidation.Tests/ --logger "trx;LogFileName=test-results.trx"
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+EXPOSE 80
 
-WORKDIR /app
-
-COPY --from=build /app /app
-
-EXPOSE 5000
-
-ENTRYPOINT ["dotnet", "CardValidation.Web.dll"]
+CMD ["dotnet", "run", "--project", "/app/CardValidation.Web/CardValidation.Web.csproj"]

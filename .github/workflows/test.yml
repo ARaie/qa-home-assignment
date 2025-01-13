@@ -34,7 +34,7 @@ jobs:
     # Run tests inside the same Docker container
     - name: Run tests inside Docker container
       run: |
-        docker exec -it $(docker ps -q --filter "ancestor=qa-home-assignement") bash -c "dotnet test C:\Users\annik\qa_home_assignement\qa-home-assignment\CardValidation.Tests --logger 'trx;LogFileName=test-results.trx'"
+        docker exec $(docker ps -q --filter "ancestor=qa-home-assignement") bash -c "dotnet test /app/CardValidation.Tests/ --logger 'trx;LogFileName=test-results.trx'"
 
     # Upload test results as an artifact
     - name: Upload test results

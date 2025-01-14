@@ -20,7 +20,7 @@ This repository contains the following projects:
  - dotnet clean
  - dotnet restore
  - dotnet build
- - dotnet test
+ - dotnet test --logger "trx;LogFileName=test-results.trx"
 
  ## Run Tests in Docker container:
 
@@ -35,5 +35,5 @@ This repository contains the following projects:
 # Running the  application 
 
 1. Clone the repository.
-2. Compile and Run application Visual Studio 2022. 
+2. Compile and Run application in Visual Studio. 
 3. Verify unit and integration tests in Visual Studio, Docker or in GitHub Actions CI pipeline.

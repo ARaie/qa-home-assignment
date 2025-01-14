@@ -1,34 +1,39 @@
 # Home Assignment
 
-You will be required to write unit tests and automated tests for a payment application to demonstrate your skills. 
+Written unit tests and automated tests for a payment application. 
 
 # Application information 
 
 It’s an small microservice that validates provided Credit Card data and returns either an error or type of credit card application. 
 
-# API Requirements 
+# Project  
 
-API that validates credit card data. 
+This repository contains the following projects:
+1.	CardValidation.Core: Contains the logic for card validation services.
+2.	CardValidation.Web: Contains the API controllers and configuration for the web application.
+3.	CardValidation.Tests: Contains unit and integration tests for the API and services.
 
-Input parameters: Card owner, Credit Card number, issue date and CVC. 
+# Running Tests
 
-Logic should verify that all fields are provided, card owner does not have credit card information, credit card is not expired, number is valid for specified credit card type, CVC is valid for specified credit card type. 
+## Run tests in Visual Studio:
 
-API should return credit card type in case of success: Master Card, Visa or American Express. 
+ - dotnet clean
+ - dotnet restore
+ - dotnet build
+ - dotnet test
 
-API should return all validation errors in case of failure. 
+ ## Run Tests in Docker container:
 
+ - docker build -t qa-home-assignement .
+ - docker run -d -p 8080:80 qa-home-assignement
+ - docker exec $(docker ps -q --filter "ancestor=qa-home-assignement") bash -c "dotnet test /app/CardValidation.Tests/ --logger 'trx;LogFileName=/app/test-results.trx'"
 
-# Technical Requirements 
+## Testing in GitHub Actions:
 
- - Write unit tests that covers 80% of application 
- - Write integration tests (preferably using Reqnroll framework) 
- - As a bonus: 
-    - Create a pipeline where unit tests and integration tests are running with help of Docker. 
-    - Produce tests execution results. 
+ - The repository includes a GitHub Actions CI pipeline that runs the tests and builds the Docker container automatically on each push.
 
 # Running the  application 
 
-1. Fork the repository
-2. Clone the repository on your local machine 
-3. Compile and Run application Visual Studio 2022.
+1. Clone the repository.
+2. Compile and Run application Visual Studio 2022. 
+3. Verify unit and integration tests in Visual Studio, Docker or in GitHub Actions CI pipeline.

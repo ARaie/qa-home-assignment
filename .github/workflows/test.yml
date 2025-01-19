@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: app/TestResults/test-results.trx
+        path: /app/CardValidation.Tests/TestResults/app/TestResults/test-results.trx
     # Stop and remove the Docker container after tests and result upload
     - name: Stop and remove Docker container
       run: |

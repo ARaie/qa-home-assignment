@@ -1,9 +1,9 @@
 using CardValidation.ViewModels;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace CardValidation.Tests
+namespace CardValidation.Tests.Controllers
 {
     public class CardValidationControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
@@ -26,7 +26,7 @@ namespace CardValidation.Tests
                 Cvv = "123"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -49,7 +49,7 @@ namespace CardValidation.Tests
                 Cvv = "123"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -72,7 +72,7 @@ namespace CardValidation.Tests
                 Cvv = "1234"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -95,7 +95,7 @@ namespace CardValidation.Tests
                 Cvv = "123"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -119,7 +119,7 @@ namespace CardValidation.Tests
                 Cvv = "123"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -144,7 +144,7 @@ namespace CardValidation.Tests
                 Cvv = "123"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -169,7 +169,7 @@ namespace CardValidation.Tests
                 Cvv = "abc" // Must be numeric
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);
@@ -193,7 +193,7 @@ namespace CardValidation.Tests
                 Cvv = null
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(creditCard), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(creditCard), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/CardValidation/card/credit/validate", content);

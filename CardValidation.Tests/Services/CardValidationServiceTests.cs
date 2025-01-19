@@ -3,7 +3,7 @@ using CardValidation.Core.Services.Interfaces;
 using CardValidation.Core.Enums;
 using Xunit;
 
-namespace CardValidation.Tests
+namespace CardValidation.Tests.Services
 {
     public class CardValidationServiceTests
     {
